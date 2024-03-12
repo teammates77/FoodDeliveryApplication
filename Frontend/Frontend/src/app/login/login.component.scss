@@ -1,0 +1,48 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-image: url('https://images3.alphacoders.com/109/1097928.jpg');
+  background-size: cover;
+}
+ 
+.login-form {
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 20px;
+  border-radius: 10px;
+  margin-left: -60%;
+  width: 25%;
+}
+ 
+.login-form h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+ 
+.form-group {
+  margin-bottom: 20px;
+}
+ 
+.form-control {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+ 
+.btn {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 5px;
+  border: none;
+  background-color: #007bff;
+  color: #fff;
+  cursor: pointer;
+}
+ 
+.btn:hover {
+  background-color: #0056b3;
+}

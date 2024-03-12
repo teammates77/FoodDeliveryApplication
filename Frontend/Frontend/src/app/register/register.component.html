@@ -1,0 +1,131 @@
+<div class="container">
+    <div class="register">
+      <h2>Register</h2>
+      <form [formGroup]="registrationform" #form="ngForm">
+            <label class="form-label" for="firstName">First Name:</label>
+            <input
+            matInput
+              type="text"
+              id="firstName"
+              name="firstName"
+              formControlName="firstName"
+              placeholder="Your Firstname"
+              required
+              letters="/^[A-Za-z]+$/"
+              class="form-control form-control-sm"
+              [class.is-invalid]="firstName.invalid && (firstName.dirty || firstName.touched)"
+            />
+            <div
+              *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)"
+              class="invalid-feedback"
+            >
+              <div *ngIf="firstName.errors?.['required']">This field is required.</div>
+              <div *ngIf="firstName.errors?.['pattern']">
+                This field must contain only alphabets.
+              </div>
+            </div>
+   
+   
+            <label class="form-label" for="lastName">Last Name:</label>
+            <input
+            matInput
+              type="text"
+              id="lastName"
+              name="lastName"
+              formControlName="lastName"
+              placeholder="Your Lastname"
+              required
+              class="form-control form-control-sm"
+              [class.is-invalid]="
+                lastName.invalid && (lastName.dirty || lastName.touched)
+              "
+            />
+            <div
+              *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)"
+              class="invalid-feedback"
+            >
+              <div *ngIf="lastName.errors?.['required']">
+                This field is required.
+              </div>
+              <div *ngIf="lastName.errors?.['pattern']">
+                This field must contain only alphabets.
+              </div>
+            </div>
+   
+   
+            <label class="form-label" for="email">Email:</label>
+            <input
+            matInput
+              type="email"
+              id="email"
+              name="email"
+              formControlName="email"
+              placeholder="Your Email-Id"
+              required
+              class="form-control form-control-sm"
+              [class.is-invalid]="email.invalid && (email.dirty || email.touched)"
+            />
+            <div
+              *ngIf="email.invalid && (email.dirty || email.touched)"
+              class="invalid-feedback"
+            >
+              <div *ngIf="email.errors?.['required']">
+                This field is required.
+              </div>
+              <div *ngIf="!email.errors?.['pattern']">Invalid email format.</div>
+            </div>
+   
+   
+        <label for="password" class="form-label">Password:</label>
+        <input
+          type="password"
+          id="password"
+          name="password"
+          placeholder="Password"
+          formControlName="password"
+          required
+          minlength="6"
+          class="form-control form-control-sm"
+          [class.is-invalid]="
+            password.invalid && (password.dirty || password.touched)
+          "/>
+        <div
+          *ngIf="password.invalid && (password.dirty || password.touched)"
+          class="invalid-feedback">
+          <div *ngIf="password.errors?.['required']">
+            This field is required.
+          </div>
+          <div *ngIf="password.errors?.['minlength']">
+            This field must have at least 6 characters.
+          </div>
+        </div>
+   
+        <label for="dob" class="form-label">Dob:</label>
+        <input
+          type="date"
+          id="dob"
+          name="dob"
+          placeholder="Dob"
+          formControlName="dob"
+          required
+          minlength="6"
+          class="form-control form-control-sm"
+          [class.is-invalid]="
+            dob.invalid && (dob.dirty || dob.touched)
+          "/>
+        <div
+          *ngIf="dob.invalid && (dob.dirty || dob.touched)"
+          class="invalid-feedback">
+          <div *ngIf="dob.errors?.['required']">
+            This field is required.
+          </div>
+        </div>
+   
+        <br>
+        <button type="button" class="btn btn-sm btn-primary" (click)="submit()">Signin</button>
+                <div class="links">
+                <a href="#" (click)="login()">Login</a>
+                </div>
+        </form>
+    </div>
+  </div>

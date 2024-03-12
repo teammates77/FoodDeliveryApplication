@@ -1,0 +1,71 @@
+<div class="container">
+    <div class="forgot">
+      <h2>Forgot Password</h2>
+      <form [formGroup]="emailform" #form="ngForm">
+        <label for="email" class="form-label">Email Id:</label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          formControlName="email"
+          placeholder="Your Email Id"
+          required
+          minlength="1"
+          maxlength="250"
+          class="form-control form-control-sm"
+          [class.is-invalid]="email.invalid && (email.dirty || email.touched)"/>
+        <div
+          *ngIf="email.invalid && (email.dirty || email.touched)"
+          class="invalid-feedback">
+          <div *ngIf="email.errors?.['required']">
+            This field is required.
+          </div>
+          <div *ngIf="email.errors?.['minlength']">
+            This field must have at least 1 character.
+          </div>
+          <div *ngIf="email.errors?.['maxlength']">
+            This field must have at most 250 characters.
+          </div>
+          <div
+            *ngIf="!email.errors?.['required'] && !email.errors?.['minlength'] && !email.errors?.['maxlength'] && email.errors?.['pattern']">
+            Invalid email format.
+          </div>
+        </div>
+ 
+ 
+        <label for="cemail" class="form-label">Confirm Email Id:</label>
+        <input
+          type="cemail"
+          id="cemail"
+          name="cemail"
+          formControlName="cemail"
+          placeholder="Your Email Id"
+          required
+          minlength="1"
+          maxlength="250"
+          class="form-control form-control-sm"/>
+          <div *ngIf="cemail.invalid && (cemail.dirty || cemail.touched)">
+            Emails must match.
+          </div>
+        <div
+          *ngIf="cemail.invalid && (cemail.dirty || cemail.touched)"
+          class="invalid-feedback">
+          <div *ngIf="cemail.errors?.['required']">
+            This field is required.
+          </div>
+          <div *ngIf="cemail.errors?.['minlength']">
+            This field must have at least 1 character.
+          </div>
+          <div *ngIf="cemail.errors?.['maxlength']">
+            This field must have at most 250 characters.
+          </div>
+          <div
+            *ngIf="!cemail.errors?.['required'] && !cemail.errors?.['minlength'] && !cemail.errors?.['maxlength'] && cemail.errors?.['pattern']">
+            Invalid email format.
+          </div>
+        </div>
+ 
+      <button type="submit" class="btn btn-primary" style="margin-top: 2%;" [disabled]="emailform.invalid">Send Link</button>
+    </form>
+    </div>
+  </div>
