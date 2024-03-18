@@ -1,0 +1,28 @@
+.footer{
+    width: 100vw;
+    background-color: whitesmoke;
+    color: black;
+    display: flex;
+    justify-content: space-evenly;
+    height: 250px;
+    padding: 20px 0px;
+    position: relative;
+    top: 100px;
+}
+.footer .col{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+.footer h3{
+    color: #fc8019;
+}
+.nav-link:hover{
+    color: #fc8019;
+}
+a{
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}

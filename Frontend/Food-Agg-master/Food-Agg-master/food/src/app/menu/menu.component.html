@@ -1,0 +1,43 @@
+<div class="menu">
+
+  <h2>Menu</h2>
+
+  <div class="categories">
+
+    <div *ngFor="let category of categories" (click)="selectCategory(category)">
+
+      {{ category }}
+
+    </div>
+
+  </div>
+ 
+  <div *ngIf="selectedCategory" class="items">
+
+    <h3>{{ selectedCategory }}</h3>
+
+    <div *ngFor="let item of getMenuItems(selectedCategory)" class="item">
+
+      <div class="item-info">
+
+        <img [src]="item.imageUrl" alt="{{ item.name }}">
+
+        <div class="details">
+
+          <h4>{{ item.name }}</h4>
+
+          <p>Price: ${{ item.price }}</p>
+
+        </div>
+
+      </div>
+
+      <button (click)="addToCart(item)">Add to Cart</button>
+
+    </div>
+
+  </div>
+
+</div>
+
+<app-footer></app-footer>
