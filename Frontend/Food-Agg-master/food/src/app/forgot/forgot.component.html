@@ -1,0 +1,101 @@
+<div class="navbar">
+  <div class="leftbar">
+      <ul>
+          <li><a href=" "><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQOVHDyOq-G2nM1sQVk5ICoR84Fsmd_MTzwAF1rhEg7lEdovP8Wryzw8apfmH0oH3M5EAI&usqp=CAU" style="margin-top: -5%;"></a>
+          <div style="margin-top: -1%; margin-left: -7%;">
+            <a><select name="cities list">
+                <option>Gurugram</option>
+                <option>Delhi</option>
+                <option>Banglore</option>
+                <option>NearBy</option>	
+            </select></a>
+          </div>
+      </ul>
+  </div>
+  <div class="rightbar">
+      <ul>
+          <li><span class="material-symbols-outlined" style="margin-left: 88%;"></span>Search</li>
+          <li><button class="nav-link" routerLink="offer" style="margin-left: 40%;">
+              %Offer
+            </button></li>
+            <li><a href="support">Help</a></li>
+            <li><button class="nav-link" routerLink="cart" style="margin-left: -80%;">
+              Cart
+            </button></li>
+      </ul>
+  </div>
+</div>
+
+<div class="container">
+    <div class="forgot">
+      <h2>Forgot Password</h2>
+      <form [formGroup]="emailform" #form="ngForm">
+        <label for="email" class="form-label">Email Id:</label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          formControlName="email"
+          placeholder="Your Email Id"
+          required
+          minlength="1"
+          maxlength="250"
+          class="form-control form-control-sm"
+          [class.is-invalid]="email.invalid && (email.dirty || email.touched)"/>
+        <div
+          *ngIf="email.invalid && (email.dirty || email.touched)"
+          class="invalid-feedback">
+          <div *ngIf="email.errors?.['required']">
+            This field is required.
+          </div>
+          <div *ngIf="email.errors?.['minlength']">
+            This field must have at least 1 character.
+          </div>
+          <div *ngIf="email.errors?.['maxlength']">
+            This field must have at most 250 characters.
+          </div>
+          <div
+            *ngIf="!email.errors?.['required'] && !email.errors?.['minlength'] && !email.errors?.['maxlength'] && email.errors?.['pattern']">
+            Invalid email format.
+          </div>
+        </div>
+
+
+        <label for="cemail" class="form-label">Confirm Email Id:</label>
+        <input
+          type="cemail"
+          id="cemail"
+          name="cemail"
+          formControlName="cemail"
+          placeholder="Your Email Id"
+          required
+          minlength="1"
+          maxlength="250"
+          class="form-control form-control-sm"/>
+          <!-- <div *ngIf="cemail.invalid && (cemail.dirty || cemail.touched)">
+            Emails must match.
+          </div> -->
+        <div
+          *ngIf="cemail.invalid && (cemail.dirty || cemail.touched)"
+          class="invalid-feedback">
+          <div *ngIf="cemail.errors?.['required']">
+            This field is required.
+          </div>
+          <div *ngIf="cemail.errors?.['minlength']">
+            This field must have at least 1 character.
+          </div>
+          <div *ngIf="cemail.errors?.['maxlength']">
+            This field must have at most 250 characters.
+          </div>
+          <div
+            *ngIf="!cemail.errors?.['required'] && !cemail.errors?.['minlength'] && !cemail.errors?.['maxlength'] && cemail.errors?.['pattern']">
+            Invalid email format.
+          </div>
+        </div>
+
+      <button type="submit" class="btn btn-primary" style="margin-top: 2%;" [disabled]="emailform.invalid">Send Link</button>
+    </form>
+    </div>
+  </div>
+
+<app-footer></app-footer>

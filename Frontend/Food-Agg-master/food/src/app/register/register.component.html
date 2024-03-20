@@ -1,0 +1,173 @@
+<div class="navbar">
+  <div class="leftbar">
+      <ul>
+          <li><a href=" "><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQOVHDyOq-G2nM1sQVk5ICoR84Fsmd_MTzwAF1rhEg7lEdovP8Wryzw8apfmH0oH3M5EAI&usqp=CAU" style="margin-top: -5%;"></a>
+          <!-- <li><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQOVHDyOq-G2nM1sQVk5ICoR84Fsmd_MTzwAF1rhEg7lEdovP8Wryzw8apfmH0oH3M5EAI&usqp=CAU"></li> -->
+          <!--<div style="margin-top: -1%; margin-left: -7%;">
+           <a><select name="cities list">
+                <option>Gurugram</option>
+                <option>Delhi</option>
+                <option>Banglore</option>
+                <option>NearBy</option>	
+            </select></a>
+          </div>-->
+      </ul>
+  </div>
+  <div class="rightbar">
+      <ul>
+          <li><span class="material-symbols-outlined" style="margin-left: 88%;"></span>Search</li>
+          <li><button class="nav-link" routerLink="offer" style="margin-left: 40%;">
+              %Offer
+            </button></li>
+            <li><a href="support">Help</a></li>
+
+            <li><button class="nav-link" routerLink="cart" style="margin-left: -80%;">
+              Cart
+            </button></li>
+      </ul>
+  </div>
+</div>
+
+<div class="container">
+  <div class="register">
+    <h2>Register</h2>
+    <form [formGroup]="registrationform" #form="ngForm"  (ngSubmit)="registerUser()">
+          <label class="form-label" for="firstName">First Name:</label>
+          <input
+          matInput
+            type="text"
+            id="firstName"
+            name="firstName"
+            formControlName="firstName"
+            placeholder="First Name"
+            required
+            letters="/^[A-Za-z]+$/"
+            class="form-control form-control-sm"
+            [class.is-invalid]="firstName.invalid && (firstName.dirty || firstName.touched)"
+          />
+          <div
+            *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)"
+            class="invalid-feedback"
+          >
+            <div *ngIf="firstName.errors?.['required']">This field is required.</div>
+            <div *ngIf="firstName.errors?.['pattern']">
+              This field must contain only alphabets.
+            </div>
+          </div>
+
+
+          <label class="form-label" for="lastName">Last Name:</label>
+          <input
+          matInput
+            type="text"
+            id="lastName"
+            name="lastName"
+            formControlName="lastName"
+            placeholder="Last Name"
+            required
+            class="form-control form-control-sm"
+            [class.is-invalid]="
+              lastName.invalid && (lastName.dirty || lastName.touched)
+            "
+          />
+          <div
+            *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)"
+            class="invalid-feedback"
+          >
+            <div *ngIf="lastName.errors?.['required']">
+              This field is required.
+            </div>
+            <div *ngIf="lastName.errors?.['pattern']">
+              This field must contain only alphabets.
+            </div>
+          </div>
+
+
+          <label class="form-label" for="email">Email:</label>
+          <input
+          matInput
+            type="email"
+            id="email"
+            name="email"
+            formControlName="email"
+            placeholder="Email-Id"
+            required
+            class="form-control form-control-sm"
+            [class.is-invalid]="email.invalid && (email.dirty || email.touched)"
+          />
+          <div
+            *ngIf="email.invalid && (email.dirty || email.touched)"
+            class="invalid-feedback"
+          >
+            <div *ngIf="email.errors?.['required']">
+              This field is required.
+            </div>
+            <div *ngIf="!email.errors?.['pattern']">Invalid email format.</div>
+          </div>
+
+
+      <label for="password" class="form-label">Password:</label>
+      <input
+        type="password"
+        id="password"
+        name="password"
+        placeholder="Password"
+        formControlName="password"
+        required
+        minlength="6"
+        class="form-control form-control-sm"
+        [class.is-invalid]="
+          password.invalid && (password.dirty || password.touched)
+        "/>
+      <div
+        *ngIf="password.invalid && (password.dirty || password.touched)"
+        class="invalid-feedback">
+        <div *ngIf="password.errors?.['required']">
+          This field is required.
+        </div>
+        <div *ngIf="password.errors?.['minlength']">
+          This field must have at least 6 characters.
+        </div>
+      </div>
+
+
+      <label for="phNumber" class="form-label">Phone Number:</label>
+        <input
+          type="tel"
+          id="phNumber"
+          name="phNumber"
+          placeholder="Phone Number"
+          formControlName="phNumber"
+          required
+          minlength="10"
+          class="form-control form-control-sm"
+          [class.is-invalid]="
+phNumber.invalid && (phNumber.dirty || phNumber.touched)
+          "/>
+         
+        <div
+          *ngIf="phNumber.invalid && (phNumber.dirty || phNumber.touched)"
+          class="invalid-feedback">
+          <div *ngIf="phNumber.errors?.['required']">
+            This field is required.
+          </div>
+          <div *ngIf="phNumber.errors?.['minlength']">
+            This field must have at least 10 numbers.
+          </div>
+          <div *ngIf="phNumber.errors?.['maxlength']">
+            This field must not have more than 10 numbers.
+          </div>
+          <div *ngIf="phNumber.errors?.['pattern']">Invalid format.</div>
+        </div>
+      <br>
+      <!-- <button type="button" class="btn btn-sm btn-primary" (click)="submit()" >Sign Up</button> -->
+      <button [disabled]="registrationform.invalid"  type="submit"  class="btn btn-primary"
+      style="padding-left: 2.5rem; padding-right: 2.5rem;">Register</button>
+              <div class="links" style="text-align: center;">
+              <a (click)="login()">Login</a>
+              </div>
+      </form>
+  </div>
+</div>
+
+<app-footer></app-footer>

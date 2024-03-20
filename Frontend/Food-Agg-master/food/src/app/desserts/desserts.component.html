@@ -1,0 +1,37 @@
+<div class="bag">
+    <div class="navbar">
+      <div class="leftbar">
+          <ul>
+            <li><a href="dashboard"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQOVHDyOq-G2nM1sQVk5ICoR84Fsmd_MTzwAF1rhEg7lEdovP8Wryzw8apfmH0oH3M5EAI&usqp=CAU" alt=""></a></li>
+              <div style="margin-top: 13%; margin-left: -7%; font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;font-weight: bolder;">
+                  FOOD FUN   
+              </div>
+              
+          </ul>
+      </div>
+      <i class="bi bi-search" style="margin-left: -18%; margin-top: -2%;font-size:1.2rem"></i>
+      <div class="rightbar">
+          <ul>
+            <input type="search" class="form-control rounded" placeholder="     Search for Dishes & Restaurants" aria-label="Search" 
+            aria-describedby="search-addon" style="margin-left: -90%; width: 120%;margin-top: 2%;height: 110%;"/>
+            <li style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;font-size: large;">
+              <span class="material-symbols-outlined"><span class="bi bi-person-circle" style="font-size:1.5rem"></span>&nbsp;</span>User</li>
+          </ul>
+      </div>
+    </div>
+    
+    <div class="main-dessert">
+      <h3 style="text-align: center;">Desserts</h3>
+      <div class="dessert-list">
+        <div class="dessert-item" *ngFor="let dessert of desserts">
+          <img [src]="dessert.image" alt="dessert Image">
+          <div class="dessert-details" style="text-align: center;">
+            <h3>{{ dessert.title }}</h3>
+            <p>{{ dessert.description }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <app-footer></app-footer>
+   

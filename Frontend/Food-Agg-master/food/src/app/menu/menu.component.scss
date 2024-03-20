@@ -1,0 +1,99 @@
+.menu {
+
+  text-align: center;
+
+}
+ 
+.categories {
+
+  display: flex;
+
+  justify-content: space-around;
+
+  margin-bottom: 20px;
+
+}
+ 
+.categories div {
+
+  cursor: pointer;
+
+  padding: 10px;
+
+  border: 1px solid #ccc;
+
+  border-radius: 5px;
+
+}
+ 
+.categories div:hover {
+
+  background-color: #f0f0f0;
+
+}
+ 
+.items {
+
+  display: flex;
+
+  flex-wrap: wrap;
+
+  justify-content: space-around;
+
+}
+ 
+.item {
+
+  width: 250px;
+
+  margin-bottom: 20px;
+
+  border: 1px solid #ccc;
+
+  border-radius: 5px;
+
+  padding: 10px;
+
+  background-color: #fff;
+
+}
+ 
+.item img {
+
+  max-width: 100%;
+
+  max-height: 150px;
+
+}
+ 
+.item button {
+
+  background-color: #4CAF50;
+
+  color: white;
+
+  border: none;
+
+  padding: 10px 20px;
+
+  text-align: center;
+
+  text-decoration: none;
+
+  display: inline-block;
+
+  font-size: 16px;
+
+  margin: 4px 2px;
+
+  cursor: pointer;
+
+  border-radius: 5px;
+
+}
+ 
+.item button:hover {
+
+  background-color: #45a049;
+
+}
