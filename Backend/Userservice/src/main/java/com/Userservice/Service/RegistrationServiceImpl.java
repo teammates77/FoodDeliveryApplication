@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.Userservice.DTO.LoginDTO;
@@ -17,14 +18,17 @@ import com.Userservice.model.User;
 public class RegistrationServiceImpl implements RegistrationService {
 private final UserRepo userRepo;
 private final ModelMapper modelMapper;
+private final BCryptPasswordEncoder passwordEncoder;
 
 @Autowired
 private EmailService email;
   
 	@Autowired
-	public RegistrationServiceImpl(UserRepo userRepo, ModelMapper modelMapper) {
+	public RegistrationServiceImpl(UserRepo userRepo, ModelMapper modelMapper, BCryptPasswordEncoder passwordEncoder) {
 		this.userRepo = userRepo;
 		this.modelMapper = modelMapper;
+		this.passwordEncoder = passwordEncoder;
+		
 		}
 	
 	@Override
@@ -32,6 +36,7 @@ private EmailService email;
 		if (existsByEmail(registrationDTO.getEmail())) {
 			throw new IllegalArgumentException("Email already exists");
 		}
+		registrationDTO.setPassword(passwordEncoder.encode(registrationDTO.getPassword()));
 		User createdUser = userRepo.save(modelMapper.map(registrationDTO, User.class));
 		email.sendSimpleEmail(registrationDTO.getEmail(),
 				registrationDTO.getFirstName()  +" Welcome to FoodFun Application as a Valued Customer where Delivery is Pleasure and NEVER HAVE A BAD MEAL.",
@@ -48,15 +53,16 @@ private EmailService email;
 	public boolean validateLogin(LoginDTO loginRequest) {
 		String email = loginRequest.getEmail();
 		String password = loginRequest.getPassword();
-		User res = userRepo.findByEmail(email);
-		return res != null && res.getPassword().equals(password);
+		User user = userRepo.findByEmail(email);
+		//return res != null && res.getPassword().equals(password);
+		if (user != null) {
+            // Compare the entered password with the stored encrypted password using BCrypt
+            return passwordEncoder.matches(password, user.getPassword());
+        } else {
+            // User with the provided email doesn't exist
+            return false;
+        }
 	}
-
-	
-	/*@Override
-	public boolean existsByEmail(String email) {
-		return UserRepo.existsByEmail(email);
-	}*/
 
 	@Override
 	public List<RegistrationDTO> getAllRegistrations() {
