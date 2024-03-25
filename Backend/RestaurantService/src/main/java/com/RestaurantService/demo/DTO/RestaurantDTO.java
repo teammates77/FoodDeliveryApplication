@@ -28,4 +28,7 @@ public class RestaurantDTO {
     private String managerName;
 
     private String contact;
+
+    private String restaurant_image_Url;
+
 }

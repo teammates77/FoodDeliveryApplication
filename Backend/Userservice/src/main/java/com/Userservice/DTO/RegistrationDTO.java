@@ -21,12 +21,12 @@ public class RegistrationDTO {
 	//@Pattern(regexp = "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[!@#$%^&*()_+])[A-Za-z\\d!@#$%^&*()_+]{8,}$", message="password should contain min 8 characters with alphabets,numeric and special character ")
 	private String password;
 	
-	@CreationTimestamp
+	/*@CreationTimestamp
     @Column(name = "created_at", nullable = false, updatable = false)
     private LocalDateTime created_at;
 	
 	@UpdateTimestamp
 	@Column(name = "updated_at")
-	private LocalDateTime updated_at;
+	private LocalDateTime updated_at;*/
 
 }

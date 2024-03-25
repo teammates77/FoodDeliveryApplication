@@ -31,4 +31,7 @@ public class ItemsInRestaurantDTO {
 
     private Restaurant restaurant;
 
+    private String description;
+
+    private String imageUrl;
 }

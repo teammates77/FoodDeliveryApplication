@@ -72,6 +72,15 @@ private EmailService email;
     public boolean existsByEmail(String email) {
         return userRepo.existsByEmail(email);
     }
+	@Override
+    public Optional<User> getUserById(int id) {
+        return userRepo.findById(id);
+    }
+
+    @Override
+    public User updateUser(User user) {
+        return userRepo.save(user);
+}
 }
 
 

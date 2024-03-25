@@ -2,6 +2,8 @@ package com.RestaurantService.demo.Model;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -24,22 +26,21 @@ public class Item {
 
     private String itemName;
 
-    @JsonIgnore
+    //@JsonIgnore
     private Integer categoryId;
 
     private Double cost;
+    private String description;
 
-    @ManyToMany
-    @JsonIgnore
-    private List<Restaurant> restaurants = new ArrayList<>();
+    private String imageUrl;
 
-    @Override
-    public String toString() {
-        return "Item{" +
-                "itemId=" + itemId +
-                ", itemName='" + itemName + '\'' +
-                ", categoryId=" + categoryId +
-                ", cost=" + cost +
-                '}';
-    }
+
+
+//    @ManyToMany
+//    @JsonIgnore
+    @ManyToOne
+    @JoinColumn(name = "restaurant_id") // Specify the foreign key column
+    @JsonIgnoreProperties("items")
+    private Restaurant restaurant;
+
 }
