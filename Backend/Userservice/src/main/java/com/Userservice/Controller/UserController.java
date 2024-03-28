@@ -18,9 +18,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.Userservice.DTO.ForgotPasswordRequest;
 import com.Userservice.DTO.LoginDTO;
 import com.Userservice.DTO.RegistrationDTO;
+import com.Userservice.DTO.SetPasswordRequest;
 import com.Userservice.Service.RegistrationService;
+import com.Userservice.Service.UserService;
 import com.Userservice.model.User;
 
 import jakarta.validation.Valid;
@@ -31,11 +34,13 @@ import jakarta.validation.Valid;
 public class UserController {
 	private final RegistrationService registrationService;
 	private final ModelMapper modelMapper;
+	 private UserService userService;
 	
 	@Autowired
-	public UserController(RegistrationService registrationService, ModelMapper modelMapper ) {
+	public UserController(RegistrationService registrationService, ModelMapper modelMapper, UserService userService ) {
 		this.registrationService = registrationService;
 		this.modelMapper = modelMapper; 
+		this.userService = userService;
 		
 	}
 @PostMapping("/register")
@@ -106,7 +111,7 @@ public ResponseEntity<?> updateProfile(@PathVariable int id, @Valid @RequestBody
         return new ResponseEntity<>("Failed to update profile: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }
-@GetMapping("/user/{id}")
+/*@GetMapping("/user/{id}")
 public ResponseEntity<?> getUserById(@PathVariable int id) {
     try {
         Optional<User> optionalUser = registrationService.getUserById(id);
@@ -120,6 +125,39 @@ public ResponseEntity<?> getUserById(@PathVariable int id) {
     } catch (Exception e) {
         return new ResponseEntity<>("Failed to retrieve user details: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
     }
+}*/
+@GetMapping("/user/{email}")
+public ResponseEntity<?> getUserByEmail(@PathVariable String email) {
+    try {
+        User user = registrationService.getUserByEmail(email);
+        if (user != null) {
+            RegistrationDTO registrationDTO = modelMapper.map(user, RegistrationDTO.class);
+            // Set the password field of the DTO to null or any other desired value
+            registrationDTO.setPassword(null); // or registrationDTO.setPassword(""); if you want to set it to an empty string
+            return new ResponseEntity<>(registrationDTO, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>("User not found", HttpStatus.NOT_FOUND);
+        }
+    } catch (Exception e) {
+        return new ResponseEntity<>("Failed to retrieve user details: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+}
+@PutMapping("/forgot-password")
+public ResponseEntity<String> forgotPassword(@RequestBody ForgotPasswordRequest request) {
+    return new ResponseEntity<>(userService.forgotPassword(request.getEmail()), HttpStatus.OK);
+}
+@PutMapping("/set-password")
+public ResponseEntity<String> setPassword(@RequestBody SetPasswordRequest request) {
+    String email = request.getEmail();
+    String newPassword = request.getNewPassword();
+    String confirmPassword = request.getConfirmPassword();
+
+    if (!newPassword.equals(confirmPassword)) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                .body("New password and confirm password do not match");
+    }
+
+    return new ResponseEntity<>(userService.setPassword(email, newPassword), HttpStatus.OK);
 }
 }
 

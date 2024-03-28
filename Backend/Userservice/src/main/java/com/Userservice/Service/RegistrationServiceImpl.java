@@ -81,6 +81,11 @@ private EmailService email;
     public User updateUser(User user) {
         return userRepo.save(user);
 }
+
+	@Override
+	public User getUserByEmail(String email) {
+		return null;
+	}
 }
 
 

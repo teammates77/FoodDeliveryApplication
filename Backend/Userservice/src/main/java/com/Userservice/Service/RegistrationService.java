@@ -22,7 +22,6 @@ public interface RegistrationService {
 	RegistrationDTO createUser(RegistrationDTO registrationDTO);
 
 	static ResponseEntity<?> forgotPassword(String email, String password) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
@@ -31,6 +30,8 @@ public interface RegistrationService {
 	Optional<User> getUserById(int id);
 
 	User updateUser(User user);
+
+	User getUserByEmail(String email);
 
 
 }
