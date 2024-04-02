@@ -27,9 +27,6 @@ public class User {
 
     private Integer age;
 
-    @Enumerated(value = EnumType.STRING)
-    private Gender gender;
-
     private List<String> role = new ArrayList<>();
 
     private String mobile;
