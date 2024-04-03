@@ -97,6 +97,9 @@ public class OrderDetailsController {
     
     			/*------- written by  JeevanReddy-----------*/
     
+    //based on restaurant id we need to filter the items present in the foodcart that is ordered 
+    // Get ordered items based on restaurantId
+    
     @GetMapping("/ordersofarestaurant/{restaurantId}")
     public ResponseEntity<List<ItemsInRestaurantOrderDTO>> viewOrderOfRestaurant(@PathVariable Integer restaurantId) {
     	
@@ -106,16 +109,5 @@ public class OrderDetailsController {
     }
     
     
-//  @GetMapping("/ordersofarestaurant/{restaurantId}")
-//  public ResponseEntity<List<ItemsInRestaurantOrderDTO>> viewOrderOfRestaurant(Integer restaurantId){
-//
-//      List<ItemsInRestaurantOrderDTO> ItemsInRestaurantOrderDTO = restaurantOrdersService.viewOrderOfRestaurant(restaurantId);
-//
-//      return new ResponseEntity<>(ItemsInRestaurantOrderDTO,HttpStatus.OK);
-//
-//  }
-    //based on restaurant id we need to filter the items present in the foodcart that is ordered 
-    // Get ordered items based on restaurantId
-  
 
 }
