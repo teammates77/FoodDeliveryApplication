@@ -104,7 +104,7 @@ public class RestaurantServiceImpl implements RestaurantService{
 
         savedItems.stream().forEach(el-> items.add(itemService.getDtoFromItemexceptrestAddress(el)));
 
-        //restaurantDTO.setItems(items);
+        restaurantDTO.setItems(items);
 
         return restaurantDTO;
     	

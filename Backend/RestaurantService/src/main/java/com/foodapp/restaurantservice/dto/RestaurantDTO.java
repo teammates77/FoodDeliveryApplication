@@ -24,11 +24,12 @@ public class RestaurantDTO {
     @Embedded
     private Address address;
 
-   // private List<ItemsInRestaurantDTO> items = new ArrayList<>();
+   private List<ItemsInRestaurantDTO> items = new ArrayList<>();
     
     private String restaurant_image_Url;
 
     private String managerName;
 
     private String contact;
+
 }
