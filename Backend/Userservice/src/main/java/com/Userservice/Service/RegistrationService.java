@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.Userservice.DTO.LoginDTO;
+import com.Userservice.DTO.LoginResponseDTO;
 import com.Userservice.DTO.RegistrationDTO;
 import com.Userservice.model.User;
 
@@ -19,8 +20,6 @@ public interface RegistrationService {
 
 	boolean validateLogin(LoginDTO loginRequest);
 
-	RegistrationDTO createUser(RegistrationDTO registrationDTO);
-
 	static ResponseEntity<?> forgotPassword(String email, String password) {
 		return null;
 	}
@@ -32,6 +31,12 @@ public interface RegistrationService {
 	User updateUser(User user);
 
 	User getUserByEmail(String email);
+
+	RegistrationDTO getUserDetailsByEmail(String email);
+
+	RegistrationDTO saveUser(RegistrationDTO registrationDTO);
+
+	RegistrationDTO getUserDetailsById(int id);
 
 
 }

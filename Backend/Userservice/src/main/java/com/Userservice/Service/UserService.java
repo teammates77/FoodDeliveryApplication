@@ -1,5 +1,4 @@
 package com.Userservice.Service;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -34,7 +33,7 @@ public class UserService {
         try {
             emailUtil.sendSetPasswordEmail(email);
         } catch (MessagingException e) {
-            throw new RuntimeException("Unable to send set password email. Please try again.");
+            throw new RuntimeException("Unable to send set password Link. Please try again.");
         }
         
         return "Please check your email to set a new password.";
@@ -51,7 +50,7 @@ public class UserService {
         user.setPassword(encryptedPassword);
         userRepo.save(user);
         
-        return "New password set successfully. Login with the new password.";
+        return "Password Reset successful";
     }
     
     public User findByEmail(String email) {

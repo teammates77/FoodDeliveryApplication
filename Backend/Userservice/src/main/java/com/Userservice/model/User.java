@@ -1,5 +1,7 @@
 package com.Userservice.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -18,11 +20,16 @@ import lombok.NoArgsConstructor;
 public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private int userid;
 	private String firstName;
 	private String lastName;
 	private String email;
 	private String phNumber;
 	private String password;
+	 @JsonProperty
+	   private Integer addressId;
+
+	    @JsonProperty
+	    private Integer foodCartId;
 
 }
